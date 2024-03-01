@@ -35,7 +35,8 @@ const UsuarioSchema = Schema({
 // Crear metodos personalizados. En este caso, sobreescritura de metodos
 // Para que no devuelva en la respuesta la password u otra info, en vez de hacer un delete en la response
 UsuarioSchema.methods.toJSON = function() {
-    const { __v, password, ...usuario } = this.toObject();
+    const { __v, password, _id, ...usuario } = this.toObject();
+    usuario.uid = _id
     return usuario;
 }
 
